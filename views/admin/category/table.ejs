@@ -17,16 +17,16 @@
           <%= categories[i].name %>
         </td>
         <td>
-          <form action="" class="btn btn-warning">
-            <a href="">
+          <form action="">
+            <a href="/category/edit/<%= categories[i]._id %>" class="btn btn-warning">
               <i class="fa fa-pencil-alt"></i>
               Ubah
             </a>
+            <button class="btn btn-danger">
+              <i class="fa fa-trash"></i>
+              Hapus
+            </button>
           </form>
-          <button class="btn btn-danger">
-            <i class="fa fa-trash"></i>
-            Hapus
-          </button>
         </td>
       </tr>
       <% } %>
