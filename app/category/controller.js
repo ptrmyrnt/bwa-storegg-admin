@@ -56,4 +56,17 @@ module.exports = {
       console.log("🚀 ~ actionEdit: ~ error:", error);
     }
   },
+  actionDelete: async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      await Category.findOneAndDelete({
+        _id: id,
+      });
+
+      res.redirect("/category");
+    } catch (error) {
+      console.log("🚀 ~ actionDelete: ~ error:", error);
+    }
+  },
 };
