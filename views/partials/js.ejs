@@ -45,6 +45,11 @@
 <script src="/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/adminlte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<!-- TODO: NEED TO REMOVE -->
+<!-- Toastr -->
+<script src="../../plugins/toastr/toastr.min.js"></script>
+
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -61,6 +66,14 @@
       "autoWidth": false,
       "responsive": true,
     });
+  });
+
+  /**TODO: NEED TO REMOVE */
+  $('.alert-success').click(function () {
+    toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+  });
+  $('.alert-danger').click(function () {
+    toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
   });
 </script>
 </body>
