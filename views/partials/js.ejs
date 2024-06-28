@@ -29,7 +29,7 @@
 <!-- AdminLTE App -->
 <script src="/adminlte/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="/adminlte/dist/js/demo.js"></script>
+<!-- <script src="/adminlte/dist/js/demo.js"></script> -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
 <!-- DataTables  & Plugins -->
@@ -45,6 +45,8 @@
 <script src="/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/adminlte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- Select2 -->
+<script src="/adminlte/plugins/select2/js/select2.full.min.js"></script>
 
 <!-- TODO: NEED TO REMOVE -->
 <!-- Toastr -->
@@ -66,14 +68,16 @@
       "autoWidth": false,
       "responsive": true,
     });
-  });
 
-  /**TODO: NEED TO REMOVE */
-  $('.alert-success').click(function () {
-    toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-  });
-  $('.alert-danger').click(function () {
-    toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    $('.select2').select2()
+
+    /**TODO: NEED TO REMOVE */
+    $('.alert-success').click(function () {
+      toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    });
+    $('.alert-danger').click(function () {
+      toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    });
   });
 </script>
 </body>
