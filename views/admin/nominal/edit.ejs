@@ -35,7 +35,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="/nominal/edit/<%= nominal._id %>?_method=put" method="post">
+            <form action="/nominal/edit/<%= nominal._id %>?_method=put" method="post" id="edit-nominal">
               <div class="card-body">
                 <div class="form-group">
                   <label>Nama Koin</label>
@@ -52,18 +52,42 @@
                 </div>
                 <div class="form-group">
                   <label for="coinQuantity">Jumlah Koin</label>
-                  <input type="number" class="form-control" name="coinQuantity" id="coinQuantity" value="<%= nominal.coinQuantity %>" placeholder="Masukkan jumlah koin" required>
+                  <input type="number" class="form-control" name="coinQuantity" id="coinQuantity" value="<%= nominal.coinQuantity %>" placeholder="Masukkan jumlah koin">
                 </div>
                 <div class="form-group">
                   <label for="price">Harga</label>
-                  <input type="number" class="form-control" name="price" id="price" value="<%= nominal.price %>" placeholder="Masukkan harga" required>
+                  <input type="number" class="form-control" name="price" id="price" value="<%= nominal.price %>" placeholder="Masukkan harga">
                 </div>
               </div>
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">Simpan</button>
               </div>
+
+              <div class="modal fade" id="modal-default">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Konfirmasi Ubah Data Nominal</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Anda yakin akan mengedit data nominal "<%= nominal.coinName %>"?</p>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+              <!-- /.modal -->
+
             </form>
           </div>
           <!-- /.card -->
