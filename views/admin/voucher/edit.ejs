@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group">
                   <label for="category">Kategori</label>
-                  <select class="form-control select2" style="width: 100%;" name="category">
+                  <select class="form-control select2" style="width: 100%;" name="category" required>
                     <option>Pilih kategori</option>
                     <% for(let i = 0; i < category.length; i++) { %>
                     <option value="<%= category[i]._id %>" <%= (voucher.category?._id.toString() === category[i]._id.toString()) ? selected='selected' : '' %>><%= category[i].name %></option>
@@ -52,7 +52,7 @@
                 <div class="form-group">
                   <label for="category">Nominal</label>
                   <div class="select2-purple">
-                    <select class="form-control select2" multiple data-placeholder="Pilih nominal" style="width: 100%;" name="nominals">
+                    <select class="form-control select2" multiple data-placeholder="Pilih nominal" style="width: 100%;" name="nominals" required>
                       <% for(let i = 0; i < nominal.length; i++) { %>
                       <option value="<%= nominal[i]._id %>" <% voucher.nominals?.forEach(item => { %> <%= (item._id.toString() === nominal[i]._id.toString() ? selected : '') %> <% }) %>> <%= nominal[i].coinName %> <%= nominal[i].coinQuantity%> </option>
                       <% } %>
