@@ -24,12 +24,12 @@
         <%= nominal[i].price %>
       </td>
       <td>
-        <form action="/nominal/delete/<%= nominal[i]._id %>?_method=delete" , method="post">
-          <a href="/nominal/edit/<%= nominal[i]._id %>" class="btn btn-warning">
+        <form action="/nominal/delete/<%= nominal[i]._id %>?_method=delete" method="post">
+          <a href="/nominal/edit/<%= nominal[i]._id %>" class="btn btn-warning btn-sm">
             <i class="fa fa-pencil-alt"></i>
             Ubah
           </a>
-          <button class="btn btn-danger">
+          <button class="btn btn-danger btn-sm">
             <i class="fa fa-trash"></i>
             Hapus
           </button>

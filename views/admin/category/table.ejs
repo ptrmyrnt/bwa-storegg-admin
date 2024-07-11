@@ -9,26 +9,26 @@
   <tbody>
     <!-- tr -->
     <% for(let i=0; i<categories.length; i++){ %>
-      <tr>
-        <td>
-          <%= i+1 %>
-        </td>
-        <td>
-          <%= categories[i].name %>
-        </td>
-        <td>
-          <form action="/category/delete/<%= categories[i]._id %>?_method=delete" , method="post">
-            <a href="/category/edit/<%= categories[i]._id %>" class="btn btn-warning">
-              <i class="fa fa-pencil-alt"></i>
-              Ubah
-            </a>
-            <button class="btn btn-danger">
-              <i class="fa fa-trash"></i>
-              Hapus
-            </button>
-          </form>
-        </td>
-      </tr>
-      <% } %>
+    <tr>
+      <td>
+        <%= i+1 %>
+      </td>
+      <td>
+        <%= categories[i].name %>
+      </td>
+      <td>
+        <form action="/category/delete/<%= categories[i]._id %>?_method=delete" method="post">
+          <a href="/category/edit/<%= categories[i]._id %>" class="btn btn-warning btn-sm">
+            <i class="fa fa-pencil-alt"></i>
+            Ubah
+          </a>
+          <button class="btn btn-danger btn-sm">
+            <i class="fa fa-trash"></i>
+            Hapus
+          </button>
+        </form>
+      </td>
+    </tr>
+    <% } %>
   </tbody>
 </table>

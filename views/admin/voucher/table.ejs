@@ -3,6 +3,9 @@
     <tr>
       <th>No.</th>
       <th>Nama Game</th>
+      <th>Kategori</th>
+      <th>Nominal</th>
+      <th>Status</th>
       <th>Aksi</th>
     </tr>
   </thead>
@@ -16,12 +19,40 @@
         <%= voucher[i].name %>
       </td>
       <td>
-        <form action="/voucher/delete/<%= voucher[i]._id %>?_method=delete" , method="post">
-          <a href="/voucher/edit/<%= voucher[i]._id %>" class="btn btn-warning">
-            <i class="fa fa-pencil-alt"></i>
-            Ubah
-          </a>
-          <button class="btn btn-danger">
+        <%= voucher[i].category?.name ?? '-' %>
+      </td>
+      <td>
+        <% for(let j = 0; j < voucher[i].nominals.length; j++) { %>
+        <span class="badge badge-warning">
+          <%= voucher[i].nominals[j].coinName %>
+          <%= voucher[i].nominals[j].coinQuantity %>
+        </span>
+        <% } %>
+      </td>
+      <td>
+        <% if(voucher[i].status === 'Y') { %>
+        <span class="badge badge-success">Aktif</span>
+        <% } else { %>
+        <span class="badge badge-danger">Tidak Aktif</span>
+        <% } %>
+      </td>
+      <td>
+        <form action="" style="display: inline-block;">
+          <button class="btn btn-primary btn-sm">
+            <i class="fa fa-folder"></i>
+            <% if(voucher[i].status === 'Y') { %>
+            Matikan
+            <% } else { %>
+            Hidupkan
+            <% } %>
+          </button>
+        </form>
+        <a href="/voucher/edit/<%= voucher[i]._id %>" class="btn btn-warning btn-sm">
+          <i class="fa fa-pencil-alt"></i>
+          Ubah
+        </a>
+        <form action="/voucher/delete/<%= voucher[i]._id %>?_method=delete" method="post" style="display: inline-block;">
+          <button class="btn btn-danger btn-sm">
             <i class="fa fa-trash"></i>
             Hapus
           </button>
