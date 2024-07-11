@@ -34,7 +34,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="/voucher/edit/<%= voucher._id %>?_method=put" method="post" enctype="multipart/form-data" id="create-voucher">
+            <form action="/voucher/edit/<%= voucher._id %>?_method=put" method="post" enctype="multipart/form-data" id="edit-voucher">
               <div class="card-body">
                 <div class="form-group">
                   <label for="name">Nama Game</label>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group">
                   <label for="category">Kategori</label>
-                  <select class="form-control select2" style="width: 100%;" name="category" required>
+                  <select class="form-control select2" style="width: 100%;" name="category">
                     <option>Pilih kategori</option>
                     <% for(let i = 0; i < category.length; i++) { %>
                     <option value="<%= category[i]._id %>" <%= (voucher.category?._id.toString() === category[i]._id.toString()) ? selected='selected' : '' %>><%= category[i].name %></option>
@@ -52,7 +52,7 @@
                 <div class="form-group">
                   <label for="category">Nominal</label>
                   <div class="select2-purple">
-                    <select class="form-control select2" multiple data-placeholder="Pilih nominal" style="width: 100%;" name="nominals" required>
+                    <select class="form-control select2" multiple data-placeholder="Pilih nominal" style="width: 100%;" name="nominals">
                       <% for(let i = 0; i < nominal.length; i++) { %>
                       <option value="<%= nominal[i]._id %>" <% voucher.nominals?.forEach(item => { %> <%= (item._id.toString() === nominal[i]._id.toString() ? selected : '') %> <% }) %>> <%= nominal[i].coinName %> <%= nominal[i].coinQuantity%> </option>
                       <% } %>
@@ -103,5 +103,31 @@
 
   $('#image').change(function() {
     readURL(this)
+  })
+
+  $(function() {
+    $('#edit-voucher').validate({
+      rules: {
+        name: {
+          required: true,
+        },
+      },
+      messages: {
+        name: {
+          required: "Harap masukkan nama game.",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function(error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function(element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
   })
 </script>

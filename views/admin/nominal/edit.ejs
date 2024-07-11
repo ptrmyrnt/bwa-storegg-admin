@@ -104,3 +104,43 @@
 
 <%- include ../../partials/footer.ejs %>
 <%- include ../../partials/js.ejs %>
+
+<script>
+  $(function() {
+    $('#edit-nominal').validate({
+      rules: {
+        coinName: {
+          required: true,
+        },
+        coinQuantity: {
+          required: true,
+        },
+        price: {
+          required: true,
+        },
+      },
+      messages: {
+        coinName: {
+          required: "Harap pilih nama koin.",
+        },
+        coinQuantity: {
+          required: "Harap masukkan jumlah koin.",
+        },
+        price: {
+          required: "Harap masukkan harga.",
+        },
+      },
+      errorElement: 'span',
+      errorPlacement: function(error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function(element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+  })
+</script>
