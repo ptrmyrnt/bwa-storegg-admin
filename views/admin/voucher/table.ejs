@@ -37,7 +37,7 @@
         <% } %>
       </td>
       <td>
-        <form action="" style="display: inline-block;">
+        <form action="/voucher/edit/status/<%= voucher[i]._id %>?_method=put" method="post" style="display: inline-block;">
           <button class="btn btn-primary btn-sm">
             <i class="fa fa-folder"></i>
             <% if(voucher[i].status === 'Y') { %>

@@ -195,16 +195,40 @@ module.exports = {
     try {
       const { _id } = req.params;
 
-      const voucher = await Voucher.findOne({ _id });
+      const voucher = await Voucher.findOneAndDelete({ _id });
 
       let currentImage = `${config.rootPath}/public/uploads/${voucher.thumbnail}`;
       if (fs.existsSync(currentImage)) {
         fs.unlinkSync(currentImage);
       }
 
-      await Voucher.findOneAndDelete({ _id });
-
       req.flash("alertMessage", "Berhasil hapus voucher!");
+      req.flash("alertStatus", "success");
+
+      res.redirect("/voucher");
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", `danger`);
+      res.redirect("/voucher");
+      console.log("🚀 ~ index: ~ error:", error);
+    }
+  },
+  actionStatus: async (req, res) => {
+    try {
+      const { _id } = req.params;
+
+      const voucher = await Voucher.findOne({ _id });
+
+      const status = voucher.status === "Y" ? "N" : "Y";
+
+      await Voucher.findOneAndUpdate(
+        { _id },
+        {
+          status,
+        }
+      );
+
+      req.flash("alertMessage", "Berhasil ubah status voucher!");
       req.flash("alertStatus", "success");
 
       res.redirect("/voucher");
