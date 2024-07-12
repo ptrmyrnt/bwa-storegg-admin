@@ -78,4 +78,21 @@ module.exports = {
       console.log("🚀 ~ index: ~ err:", err);
     }
   },
+  actionDelete: async (req, res) => {
+    try {
+      const { _id } = req.params;
+
+      await Bank.findOneAndDelete({ _id });
+
+      req.flash("alertMessage", "Berhasil hapus data bank.");
+      req.flash("alertStatus", "success");
+
+      res.redirect("/bank");
+    } catch (err) {
+      req.flash("alertMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/bank");
+      console.log("🚀 ~ index: ~ err:", err);
+    }
+  },
 };
