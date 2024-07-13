@@ -9,7 +9,9 @@ module.exports = {
 
       const alert = { message: alertMessage, status: alertStatus };
 
-      const payment = await Payment.find().populate("banks");
+      const payment = await Payment.find({
+        type: { $not: { $regex: /_/ } },
+      }).populate("banks");
 
       res.render("admin/payment/view_payment", {
         payment,
@@ -26,7 +28,7 @@ module.exports = {
   },
   viewCreate: async (req, res) => {
     try {
-      const banks = await Bank.find();
+      const banks = await Bank.find({ name: { $not: { $regex: /_/ } } });
 
       res.render("admin/payment/create", {
         banks,
@@ -45,7 +47,7 @@ module.exports = {
       const { _id } = req.params;
 
       const payment = await Payment.findOne({ _id }).populate("banks");
-      const banks = await Bank.find();
+      const banks = await Bank.find({ name: { $not: { $regex: /_/ } } });
 
       res.render("admin/payment/edit", {
         payment,

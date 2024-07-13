@@ -13,7 +13,7 @@ module.exports = {
 
       const alert = { message: alertMessage, status: alertStatus };
 
-      const voucher = await Voucher.find()
+      const voucher = await Voucher.find({ name: { $not: { $regex: /_/ } } })
         .populate("category")
         .populate("nominals");
 
@@ -32,8 +32,10 @@ module.exports = {
   },
   viewCreate: async (req, res) => {
     try {
-      const category = await Category.find();
-      const nominal = await Nominal.find();
+      const category = await Category.find({ name: { $not: { $regex: /_/ } } });
+      const nominal = await Nominal.find({
+        coinName: { $not: { $regex: /_/ } },
+      });
 
       res.render("admin/voucher/create", {
         category,
@@ -52,8 +54,10 @@ module.exports = {
     try {
       const { _id } = req.params;
 
-      const category = await Category.find();
-      const nominal = await Nominal.find();
+      const category = await Category.find({ name: { $not: { $regex: /_/ } } });
+      const nominal = await Nominal.find({
+        coinName: { $not: { $regex: /_/ } },
+      });
       const voucher = await Voucher.findOne({ _id })
         .populate("category")
         .populate("nominals");

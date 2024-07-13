@@ -41,12 +41,12 @@
                   <label>Nama Koin</label>
                   <select class="form-control select2" style="width: 100%;" name="coinName" required>
                     <option <%= (nominal.coinName === '') ? selected='selected' : '' %>>Pilih koin</option>
-                    <option value="Gold" <%= (nominal.coinName === 'Gold') ? selected='selected' : '' %>>Gold
+                    <option value="GOLD" <%= (nominal.coinName === 'GOLD') ? selected='selected' : '' %>>GOLD
                     </option>
                     <option <%= (nominal.coinName === 'Diamond') ? selected='selected' : '' %> value="Diamond">
                       Diamond</option>
-                    <option value="Jewelery" <%= (nominal.coinName === 'Jewelery') ? selected='selected' : '' %>>
-                      Jewelery
+                    <option value="Jewel" <%= (nominal.coinName === 'Jewel') ? selected='selected' : '' %>>
+                      Jewel
                     </option>
                   </select>
                 </div>

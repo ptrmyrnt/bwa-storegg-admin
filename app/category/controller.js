@@ -8,7 +8,9 @@ module.exports = {
 
       const alert = { message: alertMessage, status: alertStatus };
 
-      const categories = await Category.find();
+      const categories = await Category.find({
+        name: { $not: { $regex: /_/ } },
+      });
 
       res.render("admin/category/view_category", {
         categories,

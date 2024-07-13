@@ -8,7 +8,9 @@ module.exports = {
 
       const alert = { message: alertMessage, status: alertStatus };
 
-      const nominal = await Nominal.find();
+      const nominal = await Nominal.find({
+        coinName: { $not: { $regex: /_/ } },
+      });
 
       res.render("admin/nominal/view_nominal", {
         nominal,
