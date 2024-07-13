@@ -82,4 +82,21 @@ module.exports = {
       console.log("🚀 ~ index: ~ err:", err);
     }
   },
+  actionDelete: async (req, res) => {
+    try {
+      const { _id } = req.params;
+
+      await Payment.findOneAndDelete({ _id });
+
+      req.flash("alertMessage", "Berhasil hapus data pembayaran.");
+      req.flash("alertStatus", "success");
+
+      res.redirect("/payment");
+    } catch (err) {
+      req.flash("alertMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/payment");
+      console.log("🚀 ~ index: ~ err:", err);
+    }
+  },
 };
