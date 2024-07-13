@@ -21,8 +21,8 @@
       <td>
         <% for(let j = 0; j < payment[i].banks.length; j++) { %>
         <span class="badge badge-warning">
-          <%= payment[i].banks[j].bankName %>
-          <%= payment[i].banks[j].name %>
+          <%= payment[i].banks[j].bankName %> -
+          <%= payment[i].banks[j].name %> -
           <%= payment[i].banks[j].noRekening %>
         </span>
         <% } %>

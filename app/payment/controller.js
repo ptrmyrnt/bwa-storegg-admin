@@ -31,6 +31,21 @@ module.exports = {
       console.log("🚀 ~ index: ~ err:", err);
     }
   },
+  viewEdit: async (req, res) => {
+    try {
+      const { _id } = req.params;
+
+      const payment = await Payment.findOne({ _id }).populate("banks");
+      const banks = await Bank.find();
+
+      res.render("admin/payment/edit", { payment, banks });
+    } catch (err) {
+      req.flash("alertMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/payment");
+      console.log("🚀 ~ index: ~ err:", err);
+    }
+  },
   actionCreate: async (req, res) => {
     try {
       const { type, banks } = req.body;
@@ -39,6 +54,24 @@ module.exports = {
       await payment.save();
 
       req.flash("alertMessage", "Berhasil tambah data pembayaran.");
+      req.flash("alertStatus", "success");
+
+      res.redirect("/payment");
+    } catch (err) {
+      req.flash("alertMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/payment");
+      console.log("🚀 ~ index: ~ err:", err);
+    }
+  },
+  actionEdit: async (req, res) => {
+    try {
+      const { _id } = req.params;
+      const { type, banks } = req.body;
+
+      await Payment.findOneAndUpdate({ _id }, { type, banks });
+
+      req.flash("alertMessage", "Berhasil ubah data pembayaran.");
       req.flash("alertStatus", "success");
 
       res.redirect("/payment");
