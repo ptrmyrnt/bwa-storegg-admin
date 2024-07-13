@@ -9,6 +9,9 @@ const {
   actionStatus,
 } = require("./controller");
 const router = express.Router();
+const { isLoginAdmin } = require("../middleware/auth");
+
+router.use(isLoginAdmin);
 
 router.get("/", index);
 router.get("/create", viewCreate);
