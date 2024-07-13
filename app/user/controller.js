@@ -9,7 +9,7 @@ module.exports = {
 
       const alert = { message: alertMessage, status: alertStatus };
       if (req.session.user === null || req.session.user === undefined) {
-        res.render("admin/user/view_login", { alert });
+        res.render("admin/user/view_login", { alert, title: "Halaman Login" });
       } else {
         res.redirect("/dashboard");
       }
@@ -61,5 +61,9 @@ module.exports = {
       res.redirect("/");
       console.log("🚀 ~ index: ~ err:", err);
     }
+  },
+  actionLogout: async (req, res) => {
+    req.session.destroy();
+    res.redirect("/");
   },
 };

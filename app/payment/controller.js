@@ -11,7 +11,12 @@ module.exports = {
 
       const payment = await Payment.find().populate("banks");
 
-      res.render("admin/payment/view_payment", { payment, alert });
+      res.render("admin/payment/view_payment", {
+        payment,
+        alert,
+        username: req.session.user.username,
+        title: "Halaman Metode Pembayaran",
+      });
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
       req.flash("alertStatus", "danger");
@@ -23,7 +28,11 @@ module.exports = {
     try {
       const banks = await Bank.find();
 
-      res.render("admin/payment/create", { banks });
+      res.render("admin/payment/create", {
+        banks,
+        username: req.session.user.username,
+        title: "Halaman Tambah Metode Pembayaran",
+      });
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
       req.flash("alertStatus", "danger");
@@ -38,7 +47,12 @@ module.exports = {
       const payment = await Payment.findOne({ _id }).populate("banks");
       const banks = await Bank.find();
 
-      res.render("admin/payment/edit", { payment, banks });
+      res.render("admin/payment/edit", {
+        payment,
+        banks,
+        username: req.session.user.username,
+        title: "Halaman Ubah Metode Pembayaran",
+      });
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
       req.flash("alertStatus", "danger");
