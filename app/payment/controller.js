@@ -99,4 +99,25 @@ module.exports = {
       console.log("🚀 ~ index: ~ err:", err);
     }
   },
+  actionStatus: async (req, res) => {
+    try {
+      const { _id } = req.params;
+
+      const payment = await Payment.findOne({ _id });
+
+      const status = payment.status === "Y" ? "N" : "Y";
+
+      await Payment.findOneAndUpdate({ _id }, { status });
+
+      req.flash("alertMessage", "Berhasil ubah data status pembayaran.");
+      req.flash("alertStatus", "success");
+
+      res.redirect("/payment");
+    } catch (err) {
+      req.flash("alertMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/payment");
+      console.log("🚀 ~ index: ~ err:", err);
+    }
+  },
 };
