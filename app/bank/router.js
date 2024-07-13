@@ -1,4 +1,4 @@
-var express = require("express");
+const express = require("express");
 const {
   index,
   viewCreate,
@@ -7,7 +7,7 @@ const {
   actionEdit,
   actionDelete,
 } = require("./controller");
-var router = express.Router();
+const router = express.Router();
 
 router.get("/", index);
 router.get("/create", viewCreate);
