@@ -28,4 +28,21 @@ module.exports = {
       console.log("🚀 ~ index: ~ err:", err);
     }
   },
+  actionStatus: async (req, res) => {
+    try {
+      const { _id } = req.params;
+      const { status } = req.query;
+
+      await Transaction.findOneAndUpdate({ _id }, { status });
+
+      req.flash("alertMessage", `Berhasil ubah status transaksi.`);
+      req.flash("alertStatus", "success");
+      res.redirect("/transaction");
+    } catch (err) {
+      req.flash("alertMessage", `${err.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/transaction");
+      console.log("🚀 ~ index: ~ err:", err);
+    }
+  },
 };
