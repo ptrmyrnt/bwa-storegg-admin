@@ -37,7 +37,7 @@
         <% } %>
       </td>
       <td>
-        <form action="/voucher/edit/status/<%= voucher[i]._id %>?_method=put" method="post" style="display: inline-block;">
+        <form action="/voucher/edit/status/<%= voucher[i]._id %>?_method=put" method="post" style="display: inline-block;" class="mb-1">
           <button class="btn btn-primary btn-sm">
             <i class="fa fa-folder"></i>
             <% if(voucher[i].status === 'Y') { %>
@@ -47,11 +47,13 @@
             <% } %>
           </button>
         </form>
-        <a href="/voucher/edit/<%= voucher[i]._id %>" class="btn btn-warning btn-sm">
-          <i class="fa fa-pencil-alt"></i>
-          Ubah
-        </a>
-        <form action="/voucher/delete/<%= voucher[i]._id %>?_method=delete" method="post" style="display: inline-block;">
+        <div class="mb-1" style="display: inline-block;">
+          <a href="/voucher/edit/<%= voucher[i]._id %>" class="btn btn-warning btn-sm">
+            <i class="fa fa-pencil-alt"></i>
+            Ubah
+          </a>
+        </div>
+        <form action="/voucher/delete/<%= voucher[i]._id %>?_method=delete" method="post" style="display: inline-block;" class="mb-1">
           <button class="btn btn-danger btn-sm">
             <i class="fa fa-trash"></i>
             Hapus

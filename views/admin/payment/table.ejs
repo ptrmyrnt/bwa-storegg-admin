@@ -35,7 +35,7 @@
         <% } %>
       </td>
       <td>
-        <form action="/payment/edit/status/<%= payment[i]._id %>?_method=put" method="post" style="display: inline-block;">
+        <form action="/payment/edit/status/<%= payment[i]._id %>?_method=put" method="post" style="display: inline-block;" class="mb-1">
           <button class="btn btn-primary btn-sm">
             <i class="fa fa-folder"></i>
             <% if(payment[i].status === 'Y') { %>
@@ -45,11 +45,13 @@
             <% } %>
           </button>
         </form>
-        <a href="/payment/edit/<%= payment[i]._id %>" class="btn btn-warning btn-sm">
-          <i class="fa fa-pencil-alt"></i>
-          Ubah
-        </a>
-        <form action="/payment/delete/<%= payment[i]._id %>?_method=delete" method="post" style="display: inline-block;">
+        <div class="mb-1" style="display: inline-block;">
+          <a href="/payment/edit/<%= payment[i]._id %>" class="btn btn-warning btn-sm">
+            <i class="fa fa-pencil-alt"></i>
+            Ubah
+          </a>
+        </div>
+        <form action="/payment/delete/<%= payment[i]._id %>?_method=delete" method="post" style="display: inline-block;" class="mb-1">
           <button class="btn btn-danger btn-sm">
             <i class="fa fa-trash"></i>
             Hapus
