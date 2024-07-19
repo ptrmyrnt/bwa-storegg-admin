@@ -1,4 +1,3 @@
-const Player = require("./model");
 const Voucher = require("../voucher/model");
 
 module.exports = {

@@ -33,7 +33,7 @@ let userSchema = mongoose.Schema(
       default: "Y",
     },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("User", userSchema);

@@ -97,7 +97,7 @@ let transactionSchema = mongoose.Schema(
       },
     },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("Transaction", transactionSchema);
