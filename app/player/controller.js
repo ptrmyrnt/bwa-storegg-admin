@@ -1,4 +1,5 @@
 const Voucher = require("../voucher/model");
+const Category = require("../category/model");
 
 module.exports = {
   landingPage: async (req, res) => {
@@ -31,6 +32,20 @@ module.exports = {
       }
 
       res.status(200).json({ data: voucher });
+    } catch (error) {
+      console.log("🚀 ~ detailPage: ~ error:", error);
+      res
+        .status(500)
+        .json({ message: error.message || `Internal Server Error` });
+    }
+  },
+  category: async (req, res) => {
+    try {
+      const data = await Category.find({
+        name: { $not: { $regex: /_/ } },
+      });
+
+      res.status(200).json({ data });
     } catch (error) {
       console.log("🚀 ~ detailPage: ~ error:", error);
       res
