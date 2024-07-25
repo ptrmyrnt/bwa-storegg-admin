@@ -2,6 +2,8 @@ const Player = require("../player/model");
 const path = require("path");
 const fs = require("fs");
 const config = require("../../config");
+const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
   register: async (req, res, next) => {
@@ -83,5 +85,47 @@ module.exports = {
 
       next(error);
     }
+  },
+  login: async (req, res, next) => {
+    const { email, password } = req.body;
+
+    Player.findOne({ email: email })
+      .then((player) => {
+        if (player) {
+          const checkPassword = bcryptjs.compareSync(password, player.password);
+          if (checkPassword) {
+            const token = jwt.sign(
+              {
+                player: {
+                  id: player._id,
+                  username: player.username,
+                  email: player.email,
+                  name: player.name,
+                  phoneNumber: player.phoneNumber,
+                  avatar: player.avatar,
+                },
+              },
+              config.jwtKey
+            );
+
+            res.status(200).json({
+              data: { token },
+            });
+          } else {
+            res.status(403).json({
+              message: "Bad credentials!",
+            });
+          }
+        } else {
+          res.status(403).json({
+            message: "Email is not registered!",
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({
+          message: err.message || "Internal Server Error",
+        });
+      });
   },
 };
