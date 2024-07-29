@@ -172,4 +172,18 @@ module.exports = {
         .json({ message: error.message || `Internal Server Error` });
     }
   },
+  historyDetail: async (req, res) => {
+    try {
+      const { _id } = req.params;
+      const history = await Transaction.findOne({ _id });
+      if (!history)
+        return res.status(404).json({ message: "History Not Found!" });
+      res.status(200).json({ data: history });
+    } catch (error) {
+      console.log("🚀 ~ historyDetail: ~ error:", error);
+      res
+        .status(500)
+        .json({ message: error.message || `Internal Server Error` });
+    }
+  },
 };
